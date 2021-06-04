@@ -1,0 +1,65 @@
+---
+title: Android Malware Detection with Function Call Graph using Graph Convolutional Networks
+author: Vinayaka K V
+roll_number: 193IT001
+degree: Master of Technology (Research)
+specialization: Information Technology
+what: Second Progress Report
+date: May 2021
+abstract: |
+  Humans have a high level of attachment with their smartphones in this technological era.
+  The smartphones not only make our life easier and organised, but also keep us entertained.
+  Any threats to the smartphone will put its users' data at a risk.
+  Out of smartphone Operating Systems (OSes), Android is highly popular.
+  Its popularity has attracted considerable mass of malware into its ecosystem, 
+  threatening the privacy and security of its users.
+  Although many works are developed to detect Android malware,
+  they either do not consider the complete structure contained in the Android Package (APK), or
+  use features that are susceptible to obfuscation attacks.
+  
+  In this work, we propose an Android malware detection scheme using Graph Convolutional Networks (GCNs)
+  applied on Function Call Graphs (FCGs) extracted from APK files.
+  If the node-count distributions are drastically different for the classes,
+  GCNs can be potentially biased towards a class. 
+  To solve this, we propose a node-count balancing algorithm,
+  which is applied on a latest Android malware dataset beforehand.
+  After extracting FCGs from the APKs of the balanced dataset, 
+  every node of FCG is assigned features that are resillient to obfuscation and representative of their content.
+  We conducted a set of experiments to understand the effectiveness of features, contribution of GCNs and 
+  suitable GCN algorithm. As a result of these experiments, we found that `SAGEConv` algorithm with 3
+  GCN layers was effective in detecting Android Malware with 92.29% accuracy 
+  using features derived from the method content. 
+  As FCGs are derived entirely using the information present in the APK,
+  we observe that callback information is not present in them, adding which, could improve the accuracy of the Android malware detection.
+  
+  To add callback information to the FCGs, the Android Framework has to be analysed. 
+  We propose Android Framework analysis technique, using which callback information can be added to FCG.
+  After adding these relationships, FCG become heterogeneous.
+  To further enhance the information contained in FCG, we add permission information to it.
+  The FCG with callback and permission information is termed as enhanced FCGs (eFCGs).
+  As the FCGs are large in size, it can hinder the generalization ability of the malware detector.
+  Therefore, we contract the nodes of the eFCG to obtain Reduced-eFCGs (R-eFCGs).
+  We conducted a set of experiments to identify the essential components of eFCGs and R-eFCGs,
+  optimal neighbourhood for GCNs and generalisation ability of R-eFCGs over eFCGs.
+  As a result of these experiments, we obtained a maximum accuracy of 96.28% with R-eFCGs containing
+  all their components at 4 GCN layers. We also observed that 2 GCN layers are sufficient for
+  R-eFCGs to obtain a similar accuracy of 95.55%, thus determining it as a sweet spot between
+  running time and the accuracy.
+  
+  We conclude that there is further scope to enhance this work by exploring more node features,
+  different algortihms and explanability methods.
+keywords:
+  - Android
+  - Deep Learning
+  - Graph Convolutional Networks
+  - Program Analysis
+  - Malware Analysis
+# Pandoc-crossref specific options
+chapters: true
+figPrefix: Figure
+tblPrefix: Table
+lstPrefix: Listing
+secPrefix: Section
+subfigGrid: true
+eqnPrefix: Eq.
+...

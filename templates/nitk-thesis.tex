@@ -1,0 +1,244 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           NITK punks start              %
+% See https://www.nitk.ac.in/document/attachments/1533/PG-Curriculum-2019.pdf 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                
+\documentclass[
+    abstract=on,
+    % Page 122, Section 3.1
+    a4paper,
+    twoside,
+    % Page 122. Section 3.2 line 1
+    12pt,
+]{report}
+% Section 3.3
+\usepackage[
+    a4paper,
+    xetex,
+    top=1in,   %1.5in
+    bottom=1in, 
+    inner=1in, %1.5in
+    outer=1in,
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+%%%%%%%%%%%%%% Fonts %%%%%%%%%%%%%%%%%%%
+\usepackage{mathspec}
+% Mono font
+% https://tex.stackexchange.com/a/294369
+\setmonofont[
+  Contextuals={Alternate},
+  Scale=MatchLowercase
+]{Fira Code}
+%\usepackage{unicode-math}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\setmathsfont(Digits,Latin,Greek)[Scale=MatchLowercase]{TeX Gyre Schola}
+\setmathrm{TeX Gyre Schola}
+%\setmathfont[version=setB,StylisticSet=1]{XITS Math}
+%\setmathsfont(Digits,Latin,Greek)[Scale=MatchLowercase]{TeX Gyre Schola} 
+%\setmathrm{XITS Math}
+%%%%%%%%%%Citation Styles %%%%%%%%%%%%%
+% Page 121, Section 2.9
+% Instead of that, they could've just said APA
+\usepackage[
+    style=apa,
+    sorting=nyt,
+    natbib
+]{biblatex}
+\addbibresource{citation\_db.bib}
+% Page 121, Section 2.9, Line 4 - a deviation from APA
+\renewcommand*{\nameyeardelim}{\addspace}
+%%%%%%%%%% Language %%%%%%%%%%%%%
+\usepackage[english]{babel} % Load characters and hyphenation
+\usepackage[english=british]{csquotes} % English quotes
+%%%%%%%%%% Figures %%%%%%%%%%%%%
+$if(graphics)$
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+$endif$
+% Fix caption pointing below item
+% See https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#Issues_with_links_to_tables_and_figures_handled_by_hyperref
+\usepackage{caption}
+\captionsetup{font=small,labelfont=small}
+\usepackage{float}
+%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%
+\usepackage{longtable,booktabs,array}
+\usepackage{multirow}
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\usepackage[perpage]{footmisc}
+\makesavenoteenv{longtable}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%%%%%%%%%% Algorithms %%%%%%%%%%%%%
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%%%%%%%%%% Autoreferences %%%%%%%%%%%%%
+% https://tex.stackexchange.com/a/186948
+\usepackage{hyperref}
+%\addto\extrasenglish{%
+%\providecommand{\listingautorefname}{Listing}
+%\providecommand{\tableautorefname}{Table}
+%\renewcommand{\algorithmautorefname}{Algorithm}
+%}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+%%%%%%%%%% New Commands %%%%%%%%%%%%%
+\newcommand{\bm}{\mathbf}
+% Nomenclature
+\usepackage{nomencl}
+\makenomenclature
+% Page 122, Section 3.2, Line 1-2
+% Also, https://tex.stackexchange.com/a/470426
+\setromanfont{TeX Gyre Termes}
+\setsansfont[Scale=MatchLowercase]{TeX Gyre Termes}
+\usepackage{setspace}
+\onehalfspacing
+% Page 122, Section 3.2, Line 3-4
+% SECTION TITLE CAPS - marl
+% Would also capitialize \gls{}, so off for now
+% https://tex.stackexchange.com/a/129682
+%\usepackage{sectsty}
+%\sectionfont{\MakeUppercase} 
+% Roman appendix, They don't want Latin, though
+% Page 122, Section 3.5, Line 6-7
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\appendix}{\@Alph}{\@Roman}{}{}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            NITK Punk end!             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Other packages
+%\usepackage[inline]{enumitem}
+%\usepackage{setspace}
+
+% gcn_vert.pdf caption fix
+% https://tex.stackexchange.com/a/42797
+\usepackage{ragged2e}
+\DeclareCaptionFormat{myformat}{#1#2\\#3}
+\captionsetup[wrapfigure]{name=Figure, justification=RaggedRight, format=myformat}
+% Autoref things
+%\addto\extrasenglish{%
+%\renewcommand{\chapterautorefname}{Chapter}
+%\renewcommand{\sectionautorefname}{Section}
+%\renewcommand{\subsectionautorefname}{Section}
+%}
+%%%%%%% Header Includes %%%%%%%%%%%%
+$for(header-includes)$
+$header-includes$
+$endfor$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+%%%%%%%%%% References %%%%%%%%%%%%%%
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+$endif$
+%%%%%%%%%%%%%% Document Begins! %%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+	\doublespacing
+	\centering
+	{
+	    \Huge\bfseries\sffamily
+	    $title$
+	} 
+	\vfill
+	{
+	\LARGE
+	    \textbf{$what$}\\[0.2em]
+	}
+	\vfill
+	{
+	\LARGE \scshape
+	    $degree$ \\ \textnormal{\textit{in}}\\[0.5em] $specialization$
+	}
+	\vspace{1em}
+
+	{\large\textbf{\textit{by}}}
+
+	\vspace{1em}
+	{
+	    \LARGE
+	    %Mr.~ 
+	    $author$
+	}
+	\vfill
+	{
+	    \Large
+	    \scshape
+	    Roll No. : $roll_number$\\[1em]
+	}
+	\vfill
+	\includegraphics[width=1.5in]{images/logo}~
+	\vfill
+	{
+	 \Large 
+	 \uppercase{Department of $specialization$}
+	 
+	 \uppercase{National Institute of Technology Karnataka}
+	 
+	 \uppercase{Surathkal, Mangaluru - 575025} 
+	} 
+	\vfill
+	{\Large $date$}
+
+\end{titlepage}
+\thispagestyle{empty}
+\pagenumbering{gobble}
+$if(abstract)$
+\begin{abstract}
+\small
+$abstract$
+$if(keywords)$
+\vfill
+\textbf{Keywords:} $for(keywords)$ $keywords$$sep$, $endfor$ \\
+$endif$
+\end{abstract}
+$endif$
+
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+\pagenumbering{arabic}
+$body$
+\end{document}
